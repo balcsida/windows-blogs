@@ -1,0 +1,259 @@
+body {
+	@include mq($until: $menu-breakpoint) {
+		padding-top: 79px;
+		&.admin-bar {
+			padding-top: 79px;
+		}
+	}
+}
+
+.wrapper-sticky {
+	margin: -1px auto !important; // This important overrides the inline styles added by stick nav plugin to alleviate the 1px spacing issue.
+	&:not(.no-site-nav) {
+		overflow: hidden;
+	}
+}
+	
+.main-header {
+	color: $header-text;
+	margin-bottom: $gutter;
+	max-height: 125px;
+	@include mq($until: $menu-breakpoint) {
+		position: fixed;
+		width: 100%;
+		z-index: 10;
+		top: 0;
+		.admin-bar & {
+			top: 46px;
+		}
+	}
+	@include mq(tablet-wide) {
+		margin-bottom: $wide-gutter;
+
+		&.has-site-navigation {
+			margin-bottom: 80px;
+		}
+	}
+	a {
+		color: $header-link;
+		&:hover {
+			color: $header-link-hover;
+		}
+	}
+}
+
+.logo-link {
+	display: inline-block;
+	.logo {
+		width: 120px;
+		@include mq(tablet-wide) {
+			width: 160px;
+		}
+	}
+}
+
+.logo-scroll {
+	width: 0;
+	height: 22px;
+	margin-top: -2px;
+	overflow: hidden;
+	transition: all 0.2s;
+	display: inline-block;
+	img {
+		width: 100px;
+		height: 22px;
+		max-width: none;
+		display: inline-block;
+		vertical-align: middle;
+	}
+	@include mq($until: $menu-breakpoint) {
+		display: none;
+	}
+	@include mq($menu-breakpoint) {
+		vertical-align: middle;
+	  .sticky-active & {
+	  	width: 100px;
+	  	margin-right: $large-gutter;
+	  }
+	}
+}
+
+.top-bar {
+	background-color: $header-bg;
+	overflow: hidden;
+	padding-top: $gutter*0.75;
+	padding-bottom: $gutter*0.75;
+}
+
+.branding {
+	position: relative;
+}
+
+.bottom-bar {
+	display: none;
+	width: 100%;
+	z-index: 10;
+	background-color: $header-bottom-default;
+	@include themes((background-color: normal), 'body');
+	.toggled & {
+		@include mq($until: $menu-breakpoint) {
+			box-shadow: 0px 2px 5px rgba(0,0,0,0.7);
+			display: block;
+			padding-top: 55px;
+			position: absolute;
+			top: 100%;
+			left: 0;
+		}
+	}
+	@include mq($menu-breakpoint) {
+		display: block !important;
+	}
+}
+
+.top-bar-right {
+	width: calc(100% - 200px);
+	float: right;
+	text-align: right;
+	@include mq($menu-breakpoint) {
+		margin-top: 3px;
+	}
+	.hidden-mobile {
+		display: none;
+	}
+}
+
+.social-link,
+.rss-link {
+	// background-color: $gray-dark;
+	padding: 7px;
+	display: inline-block;
+	@include mq($until: $menu-breakpoint) {
+		display: none;
+		position: absolute;
+		top: 100%;
+		margin-top: 25px;
+		z-index: 11;
+		@include themes((background-color: dark), 'body');
+		.toggled & {
+			display: block;
+		}
+	}
+	.icon {
+		vertical-align: baseline;
+	}
+}
+.rss-link {
+	min-width: 33px;
+	text-align: center;
+	@include mq($until: $menu-breakpoint) {
+		right: 82px;
+	}
+	@include mq($menu-breakpoint) {
+		left: auto;
+		text-align: center;
+		.hidden-mobile {
+			display: inline-block;
+		}
+	}
+	&:hover {
+		background-color: $rss-orange !important;
+	}
+	.icon-rss:before {
+		display: inline-block;
+		vertical-align: baseline;
+	}
+	span {
+		float: right;
+		margin-top: -2px;
+		margin-left: 4px;
+	}
+}
+.social-link {
+	width: 33px;
+	text-align: center;
+	@include mq($menu-breakpoint) {
+		width: 35px;
+	}
+	&.facebook {
+		@include mq($until: $menu-breakpoint) {
+			right: 46px;
+		}
+	}
+	&.twitter {
+		@include mq($until: $menu-breakpoint) {
+			right: 10px;
+		}
+	}
+	&.facebook:hover {
+		background-color: $facebook-blue;
+	}
+	&.twitter:hover {
+		background-color: $twitter-blue;
+	}
+}
+
+$menu-icon-width: 20px;
+$menu-icon-height: 2px;
+.toggle-mobile-menu {
+	position: absolute;
+	top: -15px;
+	right: 0;
+	display: block;
+	cursor: pointer;
+	width: 40px;
+	height: 40px;
+	text-align: right;
+	padding-top: 19px;
+	padding-right: 10px;
+	@include mq($menu-breakpoint) {
+		display: none !important;
+	}
+	a {
+		height: $menu-icon-height;
+		width: $menu-icon-width;
+		background-color: $white;
+		position: relative;
+		display: inline-block;
+		vertical-align: middle;
+		&:before,
+		&:after {
+			content: "";
+			display: block;
+			background-color: $white;
+			height: $menu-icon-height;
+			width: $menu-icon-width;
+			position: absolute;
+			left: 0;
+			transition: 0.2s;
+		}
+		&:before {
+			top: $menu-icon-height * -2.5;
+		}
+		&:after {
+			top: $menu-icon-height * 2.5;
+		}
+		.toggled & {
+			background-color: transparent;
+			&:before,
+			&:after {
+				top: 0;
+				transform-origin: 50% 50%;
+			}
+			&:before {
+				transform: rotate(45deg);
+			}
+			&:after {
+				transform: rotate(-45deg);
+			}
+		}
+	}
+	span {
+		left: -47px;
+		position: absolute;
+		top: -9px;
+		
+		@include mq($from: tablet) {
+			top: -11px;
+		}
+	}
+}

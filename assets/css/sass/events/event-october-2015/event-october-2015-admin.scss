@@ -1,0 +1,140 @@
+@import "../../utils/variables";
+@import "../../utils/mq-variables";
+@import "../../utils/mq";
+@import "../../utils/mixins";
+@import "../../utils/placeholders";
+@import "../../utils/ratios";
+@import "../../base/colors";
+
+.m-hero {
+	.container {
+		width: 100%;
+	}
+	.m-blog-teaser-content-editor p {
+		font-weight: 300;
+		// Force font size over editor
+		font-size: 14px !important;
+		font-size: 0.875rem !important;
+		line-height: 20px !important;
+		line-height: 1.25rem !important;
+		@include mq(desk) {
+			// Force font size over editor
+			font-size: 16px !important;
+			font-size: 1rem !important;
+			line-height: 22px !important;
+			line-height: 1.375rem !important;
+		}
+	}
+}
+
+.wrap #poststuff h2.m-section-title {
+	@include font(22px, 26px, $weight: $font-light);
+	@include mq(desk) {
+		@include font(42px, 42px);
+	}
+}
+
+#poststuff h3.m-product-title {
+	padding: 0;
+	@include font(24px, 24px, $font-sans, $font-light);
+	@include mq(desk) {
+		@include font(34px, 34px);
+	}
+}
+
+.m-product-info {
+	.m-product-desc,
+	p,
+	ul,
+	ol {
+		// Force font size over editor
+		font-size: 14px !important;
+		font-size: 0.875rem !important;
+		line-height: 20px !important;
+		line-height: 1.25rem !important;
+		@include mq(desk) {
+			// Force font size over editor
+			font-size: 16px !important;
+			font-size: 1rem !important;
+			line-height: 22px !important;
+			line-height: 1.375rem !important;
+		}
+	}
+	ul {
+		list-style-type: disc;
+		padding-left: 40px;
+	}
+	ol {
+		list-style-type: decimal;
+	}
+}
+
+.m-product-desc {
+	@include font(14px, 22px, $font-sans, $font-light);
+	@include mq(desk) {
+		@include font(24px, 32px);
+	}
+}
+
+.m-product-specs {
+	margin-bottom: 20px;
+}
+
+.mfp-hide {
+	display: none;
+}
+
+.wb-content-block-product-settings .product-image,
+.wb-asset-group-content-block .asset {
+	margin-top: 20px;
+	padding-top: 20px;
+	border-top: 1px solid #ccc;
+}
+
+// Content blocks
+#content-blocks {
+	.block-content {
+		* {
+			box-sizing: border-box;
+		}
+		img {
+			height: 100%;
+			width: 100%;
+		}
+		// Teaser
+		.m-hero.black-text {
+			img.m-blog-teaser-image {
+				display: block;
+				width: 50%;
+				height: auto;
+			}
+		}
+		// Buttons
+		.wp-core-ui & {
+			li.button a,
+			a.button {
+				background-color: $blue;
+				color: $white;
+				text-transform: uppercase;
+				display: inline-block;
+				padding: 7px 20px;
+				@include font(14px, 22px, $weight: $font-bold);
+				border: 0;
+				border-radius: 0;
+				box-shadow: none;
+				vertical-align: middle;
+				height: auto;
+				&:hover {
+					background-color: $blue-dark;
+				}
+				&.button-reverse {
+					background-color: $white;
+					color: $blue;
+					&:hover {
+						background-color: $gray-light;
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,15 @@
+(function(window,$,undefined){document.addEventListener('DOMContentLoaded',function(){var ageGateVideos=findAgeGateVideos();var ageGateSubmitBtns=findAgeGateSubmitButtons();processAgeGateVideos(ageGateVideos);$('body').on('click','.age-gate .play-button',function(){var self=$(this);self.parents('.age-gate').addClass('show-form');});nodeListMap(ageGateSubmitBtns,function(button){button.addEventListener('click',function(event){var age=determineUsersAge(event);var isOldEnough=userIsOldEnough(age);setAgeGateCookie(isOldEnough);canViewVideo(isOldEnough,ageGateVideos);});});});function processAgeGateVideos(ageGateVideos){var savedUserData;if(hasAgeGateVideos(ageGateVideos)){try{savedUserData=getAgeGateCookie();canViewVideo(savedUserData,ageGateVideos);}catch(e){console.warn(e);}}}
+function determineUsersAge(event){event.preventDefault();var form=$(event.target).closest('form');var options=form[0].querySelectorAll('select');var formData=getFormData(options);return calculateUsersAge(new Date(formData.year,formData.month,formData.day));}
+function findAgeGateVideos(){return document.querySelectorAll('.age-gate-wrap');}
+function findAgeGateSubmitButtons(){return document.querySelectorAll('.js-form-submit');}
+function hasAgeGateVideos(ageGateVideos){return(ageGateVideos&&0<ageGateVideos.length)?true:false;}
+function getAgeGateCookie(){var val=sessionStorage.getItem('video-age-gate');if('true'===val||'false'===val){return(val==='true');}else{return val;}}
+function setAgeGateCookie(userInfo){sessionStorage.setItem('video-age-gate',userInfo);}
+function canViewVideo(savedUserData,ageGateVideos){if(null===savedUserData){return;}else if(true===savedUserData){nodeListMap(ageGateVideos,hideAgeGateOverlay);}else if(false===savedUserData){var videoElements=document.querySelectorAll('embed-youtube');nodeListMap(ageGateVideos,showRestrictedMessage);nodeListMap(videoElements,removeVideoIframes);}}
+function hideAgeGateOverlay(overlay){overlay.parentNode.classList.add('age-verified');}
+function removeVideoIframes(video){var videoElement=video.querySelector('iframe');video.removeChild(videoElement);}
+function showRestrictedMessage(overlay){overlay.innerHTML='';var heading=document.createElement('h2');var headingContent=document.createTextNode(Windows_Blogs.restriction_message);heading.appendChild(headingContent);overlay.appendChild(heading);}
+function nodeListMap(data,callback){if(data){return[].map.call(data,callback);}}
+function getFormData(form){var data={};nodeListMap(form,function(select){data[select.name]=parseInt(select.value);test=0;});return data;}
+function calculateUsersAge(birthday){var ageDifMs=Date.now()-birthday.getTime();var ageDate=new Date(ageDifMs);return Math.abs(ageDate.getUTCFullYear()-1970);}
+function userIsOldEnough(age){return(16<age)?true:false;}})(this,jQuery);

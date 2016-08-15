@@ -1,0 +1,194 @@
+.hidden-share {
+	text-align: left;
+	display: inline-block;
+	@include mq(tablet) {
+		width: 0;
+		max-height: 0;
+		overflow: hidden;
+		transition: width 0.2s linear;
+	}
+	@include mq($until: tablet) {
+		vertical-align: bottom;
+		margin: -3px 7px -3px -8px;
+		padding: 3px 8px;
+		max-height: 30px;
+		min-width: 121px;
+	}
+	a {
+		display: inline-block;
+		width: 35px !important;
+		@include mq(tablet) {
+			width: 24px !important;
+		}
+		&.addthis_button_facebook:hover {
+			color: $facebook-blue;
+		}
+		&.addthis_button_twitter:hover {
+			color: $twitter-blue;
+		}
+		&.addthis_button_reddit:hover {
+			color: $reddit-orangered;
+		}
+	}
+}
+.posts .addthis_toolbox {
+	@include mq(tablet) {
+		transition: 0.2s margin 0.2s linear;
+	}
+}
+.posts .addthis_toolbox:hover {
+	margin-left: -88px;
+	@include mq(tablet) {
+		transition: none;
+	}
+}
+.type-curation_post .addthis_toolbox:not(.expanded):hover,
+.type-post .addthis_toolbox:not(.expanded):hover {
+	@include mq(tablet) {
+		background-color: $blue;
+		color: $white;
+		@include themes((background-color: normal), 'body');
+	}
+	.addthis_counter.addthis_bubble_style a.addthis_button_expanded {
+		@include mq(tablet) {
+			color: $white;
+		}
+	}
+}
+.addthis_toolbox:hover .hidden-share {
+	vertical-align: bottom;
+	margin: -3px 7px -3px -8px;
+	padding: 3px 8px;
+	width: 88px;
+	max-height: 30px;
+	@include mq(tablet) {
+		background-color: $body-bg;
+		transition: width 0.2s linear;
+	}
+}
+.type-curation_post,
+.type-post {
+	.addthis_toolbox {
+		padding: 3px 8px;
+		display: inline-block;
+		vertical-align: middle;
+		text-transform: uppercase;
+		font-weight: $font-bold;
+		font-family: $font-sans-alt;
+		font-size: 18px;
+		color: $gray;
+		white-space: nowrap;
+		width: auto;
+		@include mq(tablet) {
+			font-size: 16px;
+			background-color: $body-bg;
+		}
+		&.expanded {
+			padding: 3px 0;
+			background-color: $post-bg;
+			@include mq(0px, 375px) {
+				background-color: transparent;
+			}
+			a.counter {
+				color: $gray;
+				pointer-events: none;
+				display: none;
+				@include mq(375px) {
+					margin-right: 10px;
+					display: inline-block;
+					line-height: 29px;
+					vertical-align: top;
+				}
+				&:hover {
+					color: $gray;
+				}
+				& > span:last-child {
+					font-size: 15px;
+					@include mq(tablet) {
+						font-size: 18px;
+					}
+				}
+			}
+			&.addthis_default_style .addthis_counter {
+				float: none;
+			}
+			a:not(.counter):not(.addthis_button_expanded) {
+				display: inline-block;
+				padding: 2px 10px 5px 10px;
+				color: $gray;
+				background-color: $body-bg;
+				margin-right: 4px;
+				@include mq(0px, 375px) {
+					padding: 2px 5px 5px;
+					margin-left: 0;
+					margin-right: 0;
+				}
+				@include mq( $until: 480px ) {
+					width: 43px;
+					text-align: center;
+				}
+				@include mq(tablet) {
+					margin-right: 4px;
+				}
+				span {
+					display: none;
+					vertical-align: middle;
+					font-size: 13px;
+					@include mq( $from: 480px ) {
+						display: inline-block;
+					}
+				}
+				&:hover {
+					color: $white;
+					@include themes((background-color: normal), 'body');
+					.icon-facebook,
+					.icon-twitter,
+					.icon-reddit,
+					.icon-linkedin,
+					.icon-skype {
+						color: $white;
+					}
+				}
+				.icon-facebook {
+					color: $facebook-blue;
+				}
+				.icon-twitter {
+					color: $twitter-blue;
+				}
+				.icon-reddit {
+					color: $reddit-orangered;
+				}
+				.icon-linkedin {
+					color: $linkedin-blue;
+				}
+				.icon-skype {
+					color: $skype-blue;
+				}
+			}
+		}
+		a {
+			color: $gray;
+		}
+		&.addthis_default_style {
+			.addthis_button_compact {
+				display: inline-block;
+				float: none;
+			}
+		}
+	}
+	.addthis_counter.addthis_bubble_style {
+		background-image: none;
+		width: auto !important;
+		padding: 0 7px 0 2px;
+		float: none;
+		a.addthis_button_expanded {
+			font-size: 15px;
+			height: auto;
+			width: auto;
+			padding: 0;
+			margin: 0;
+			display: inline-block;
+			@include themes((color: normal), 'body');
+		}
+	}
+}

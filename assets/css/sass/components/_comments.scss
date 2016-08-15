@@ -1,0 +1,112 @@
+.comment-list {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	li ul {
+		list-style: none;
+	}
+}
+
+.comment-body {
+  border-bottom: 1px solid $body-bg;
+  margin-bottom: $gutter;
+  padding-bottom: $gutter;
+}
+
+.comment-right {
+	float: right;
+	text-align: right;
+}
+
+.post-content .comment-content p {
+	@include font(12px, 16px);
+	@include mq(tablet) {
+		@include font(14px, 18px);
+	}
+}
+
+time.comment-time {
+	font-size: 12px;
+	font-style: italic;
+}
+
+.comment-reply-login,
+.comment-reply-link {
+	font-size: 13px;
+	text-transform: uppercase;
+	font-weight: $font-bold;
+}
+
+.logged-in-as,
+.comment-author {
+	.avatar {
+		display: inline-block;
+		vertical-align: middle;
+		margin-right: 10px;
+	}
+}
+
+.author-wrap {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.comments-head {
+	margin-top: $small-gutter;
+	@include mq(tablet) {
+		margin-top: $gutter;
+	}
+}
+.comment-respond {
+	background-color: $gray-light;
+	margin-left: $reverse-gutter;
+	margin-right: $reverse-gutter;
+	margin-bottom: $gutter;
+	padding: $small-gutter $gutter;
+	@include mq(tablet-wide) {
+		margin-left: $reverse-wide-gutter;
+		margin-right: $reverse-wide-gutter;
+		padding: $gutter $wide-gutter;
+	}
+	textarea,
+	input {
+		border: 0;
+		padding: 5px;
+		font-size: 16px;
+		width: 100%;
+	}
+	.submit {
+		color: $white;
+		background-color: $gray;
+	}
+	.submit:hover {
+		color: $white;
+		background-color: $blue;
+		@include themes((background-color: normal), 'body');
+	}
+}
+
+// One login legacy override
+.oneall_social_login_label {
+	display: none;
+}
+.oneall_social_login_providers {
+	height: 40px;
+	overflow: hidden;
+	position: relative;
+	z-index: 1;
+}
+
+.oneall_social_login {
+	margin-bottom: -36px;
+}
+
+.sign-in-comment-button {
+	margin-bottom: 30px;
+	display: block;
+	span {
+		margin-left: 50px;
+		margin-top: 8px;
+		display: inline-block;
+	}
+}

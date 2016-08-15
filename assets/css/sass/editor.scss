@@ -1,0 +1,17 @@
+/**
+ * Windows Blogs
+ * http://10up.com
+ *
+ * Copyright (c) 2015 10up
+ * Licensed under the GPLv2+ license.
+ */
+
+@import "utils/variables";
+@import "utils/mq-variables";
+@import "utils/mq";
+@import "utils/mixins";
+@import "utils/placeholders";
+
+body {
+	@extend %post-content;
+}

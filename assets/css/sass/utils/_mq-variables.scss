@@ -1,0 +1,33 @@
+// Sass MQ variables
+/*------------------------------------*\
+   #SASS-MQ
+\*------------------------------------*/
+
+// To enable support for browsers that do not support @media queries,
+// (IE <= 8, Firefox <= 3, Opera <= 9) set $mq-responsive to false
+// Create a separate stylesheet served exclusively to these browsers,
+// meaning @media queries will be rasterized, relying on the cascade itself
+$mq-responsive: true !default;
+
+// Name your breakpoints in a way that creates a ubiquitous language
+// across team members. It will improve communication between
+// stakeholders, designers, developers, and testers.
+$mq-breakpoints: (
+    phone-wide: 576px,
+    wordpress: 782px,
+    tablet: 769px,
+    tablet-wide: 1024px,
+    desk: 1440px,
+    desk-mid: 1720px,
+    desk-wide: 1920px
+);
+
+// Define the breakpoint from the $mq-breakpoints list that should
+// be used as the target width when outputting a static stylesheet
+// (i.e. when $mq-responsive is set to 'false').
+$mq-static-breakpoint: desk;
+
+// If you want to display the currently active breakpoint in the top
+// right corner of your site during development, add the breakpoints
+// to this list, ordered by width, e.g. (mobile, tablet, desktop).
+// $mq-show-breakpoints: (lap, desk, desk-wide);

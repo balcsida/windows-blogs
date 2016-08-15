@@ -1,0 +1,88 @@
+.date,
+span.category {
+	color: $gray;
+	a {
+		color: $gray;
+		&:hover {
+			color: $gray-dark;
+		}
+	}
+	@include font(14px, 22px, $weight: $font-semibold);
+}
+.date {
+	text-transform: uppercase;
+	&:empty {
+		display: none;
+	}
+}
+.date + .category,
+.author + .category {
+	color: $gray-medium-light;
+	&:empty {
+		display: none;
+	}
+	&:before {
+		content: ' / ';
+		margin-left: 3px;
+		margin-right: 3px;
+	}
+}
+
+.post-title {
+	font-weight: $font-normal;
+}
+
+.author {
+	.post-header & {
+		margin-bottom: $gutter;
+		@include font(14px, 22px, $weight: $font-semibold);
+		.search-results & {
+			display: inline;
+		}
+		a {
+			@include themes((color: normal), 'body');
+			&:hover,
+			&:focus {
+				@include themes((color: dark), 'body');
+			}
+		}
+	}
+}
+
+.type-curation_post,
+.type-post:not(tr) {
+	.post-title a {
+		color: $gray-dark !important;
+		&:hover {
+			color: $gray-darkest !important;
+		}
+	}
+}
+
+
+.read-more-inline {
+	color: $blue;
+	font-weight: $font-bold;
+	white-space: nowrap;
+	@include themes((color: normal), 'body');
+	&:hover {
+		color: $blue-dark;
+		@include themes((color: dark), 'body');
+	}
+}
+
+.post-modified {
+	font-weight: $font-bold;
+	text-transform: uppercase;
+	font-size: 15px;
+}
+
+.post-lede {
+	font-size: 1.45em;
+	font-weight: 600;
+
+	p {
+		font-size: 1em;
+		line-height: (29px/19px); // Based on the current line-height/font-size ratio for paragraphs
+	}
+}

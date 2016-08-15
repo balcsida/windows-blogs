@@ -1,0 +1,39 @@
+.pagination {
+	margin-top: $gutter;
+	margin-bottom: $gutter;
+	@include mq(tablet-wide) {
+		margin-bottom: 70px;
+		margin-top: $wide-gutter;
+	}
+	&.push-left {
+		@include mq(tablet-wide) {
+			padding-left: calc(50% + #{$gutter});
+		}
+	}
+	.page-numbers {
+		display: inline-block;
+		min-width: 35px;
+		height: 35px;
+		line-height: 35px;
+		margin-right: 10px;
+		padding: 0 10px;
+		text-align: center;
+		color: $gray;
+		background-color: $gray-light;
+		font-weight: $font-bold;
+		&:not(.dots):not(.current):hover {
+			@include themes((color: dark), 'body');
+		}
+		&.dots {
+			background-color: transparent;
+		}
+		&.current {
+			color: $white;
+			@include themes((background-color: normal), 'body');
+		}
+		&.next,
+		&.prev {
+			width: auto;
+		}
+	}
+}

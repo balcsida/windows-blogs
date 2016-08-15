@@ -1,0 +1,42 @@
+.post-archive {
+	overflow: hidden;
+	clear: both;
+	background-color: $post-bg;
+	margin-bottom: $gutter;
+	@include font(12px, 18px);
+	@include mq(phone-wide) {
+		display: flex;
+	}
+	@include mq(tablet-wide) {
+		margin-bottom: $wide-gutter;
+		@include font(16px, 24px);
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+	.fixed-ratio {
+		@include mq(phone-wide) {
+			order: 2;
+			width: 42.1%;
+		}
+		& + .post-wrapper {
+			@include mq(phone-wide) {
+				order: 1;
+				width: 57.9%;
+			}
+		}
+	}
+	.post-title {
+		margin-top: 0;
+		@include font(21px, 27px);
+		@include mq(tablet-wide) {
+			@include font(27px, 33px);
+		}
+	}
+}
+
+.post-archive-header {
+	.post-title {
+		margin-bottom: 0;
+	}
+}

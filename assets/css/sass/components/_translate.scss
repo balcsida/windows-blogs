@@ -1,0 +1,46 @@
+// Legacy translate widget style
+.bing-translate-wrap {
+	display: none;
+	@include mq(tablet-wide) {
+		display: inline-block;
+		height: 31px;
+		vertical-align: middle;
+	}
+}
+#WidgetLauncher {
+	margin: 0px !important;
+	width: 160px !important;
+	height: 31px !important;
+	display: block !important;
+	// background: $gray-darkest !important;
+}
+.bing-translate-wrap #LauncherTranslatePhrase {
+	text-align: center;
+	cursor: pointer;
+	padding: 5px 0 0 0 !important;
+	height: 20px;
+	width: 160px;
+	&:hover {
+		opacity: 0.9;
+		background-color: transparent !important;
+	}
+}
+
+#MicrosoftTranslatorWidget {
+	height: auto !important;
+}
+
+.Dark #LauncherTranslatePhrase {
+  border: 0px !important;
+}
+#TranslateSpan {
+  display: none !important;
+}
+#WidgetLauncher > .WidgetEnabled {
+	background: url('/wp-content/themes/windows-blogs/images/bing-translate.png') center center no-repeat !important;
+	background-size: 150px auto !important;
+}
+
+#LauncherLogo {
+  display: none !important;
+}

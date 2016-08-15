@@ -1,0 +1,64 @@
+.main-footer {
+	background-color: $footer-bg;
+	overflow: hidden;
+	color: $footer-link;
+	font-size: 14px;
+	border-top: 10px solid $blue;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	@include themes((border-top-color: normal), 'body');
+	body.blog-id-43 & {
+		border-top-color: #505050 !important;
+	}
+	@include mq(tablet) {
+		padding-top: 50px;
+		padding-bottom: 50px;
+	}
+	a {
+		color: $footer-link;
+		padding: 10px 0;
+		display: inline-block;
+		@include mq(tablet) {
+			display: inline;
+			padding: 0;
+		}
+		&:hover {
+			color: $footer-link-hover;
+		}
+	}
+	.footer-logo {
+		@include mq(tablet) {
+			display: inline-block;
+			float: left;
+		}
+	}
+	ul {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		@include mq(tablet) {
+			display: inline-block;
+		}
+	}
+	ul > li {
+		@include mq(tablet) {
+			display: inline-block;
+			margin-right: $gutter;
+		}
+	}
+}
+.footer-bar-right {
+	@include mq(tablet) {
+		float: right;
+		text-align: right;
+		margin-top: 5px;
+	}
+}
+.copyright {
+	padding: 10px 0;
+	display: inline-block;
+	@include font(12px, $weight: $font-bold);
+	@include mq(tablet) {
+		padding: 0;
+	}
+}

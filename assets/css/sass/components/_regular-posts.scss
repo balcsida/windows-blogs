@@ -1,0 +1,48 @@
+.post-text-only {
+	overflow: hidden;
+	background-color: $post-bg;
+	position: relative;
+	padding: $small-gutter;
+	@include font(12px, 18px);
+	@include mq(tablet) {
+		padding: $large-gutter;
+		@include font(16px, 24px);
+	}
+	&:after {
+		content: "";
+		display: block;
+		position: absolute;
+		bottom: 0;
+		width: calc(100% - #{$gutter});
+		height: 1px;
+		background-color: $body-bg;
+		left: $gutter/2;
+		@include mq(tablet) {
+			width: calc(100% - #{$gutter} * 3);
+			left: $large-gutter;
+		}
+	}
+	.post-sharing {
+		@include mq(tablet) {
+			width: 20%;
+			float: right;
+			text-align: right;
+			position: absolute;
+			top: $large-gutter;
+			right: $large-gutter;
+		}
+	}
+	.post-title {
+		margin-top: 0;
+		@include font(13px, 19px);
+		@include mq(tablet) {
+			@include font(19px, 25px);
+		}
+	}
+	p {
+		clear: both;
+		@include mq(tablet) {
+			margin-bottom: 0;
+		}
+	}
+}

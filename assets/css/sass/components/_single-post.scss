@@ -1,0 +1,87 @@
+.single {
+	.comments-head,
+	.post-footer {
+		border-top: 1px solid $body-bg;
+		clear: both;
+		margin-left: $reverse-gutter;
+		margin-right: $reverse-gutter;
+		padding-left: $gutter;
+		padding-right: $gutter;
+		@include mq(tablet-wide) {
+			margin-left: $reverse-wide-gutter;
+			margin-right: $reverse-wide-gutter;
+			padding-left: $wide-gutter;
+			padding-right: $wide-gutter;
+		}
+	}
+	.post-footer {
+		padding-top: $gutter;
+	}
+	.post-thumbnail,
+	.video-wrapper {
+		margin-top: $small-gutter;
+		margin-left: $reverse-gutter;
+		margin-right: $reverse-gutter;
+		@include mq(tablet-wide) {
+			margin-top: $gutter;
+			margin-left: $reverse-wide-gutter;
+			margin-right: $reverse-wide-gutter;
+		}
+	}
+}
+
+.post-content {
+	@extend %post-content;
+	.post-title {
+		margin-top: 0;
+		@include tracking(-10);
+		@include font(25px, 32px);
+		@include mq(tablet) {
+			@include font(35px, 42px);
+		}
+	}
+}
+
+.sidebar a,
+.post-content a {
+	color: $blue;
+	@include themes((color: normal), 'body');
+	&:hover {
+		color: $blue-dark;
+		@include themes((color: dark), 'body');
+	}
+}
+
+.blog-id-3 .post > p > a,
+.blog-id-3 .post li > a {
+	text-decoration: underline;
+}
+
+
+.post-tags {
+	margin-top: 0;
+	a {
+		display: inline-block;
+		margin-right: $small-gutter;
+		margin-bottom: $small-gutter;
+		@include font(11px, 18px, $weight: $font-bold);
+		@include mq(tablet-wide) {
+			@include font(14px, 22px);
+		}
+	}
+}
+
+.tags-title {
+	color: $white;
+	background-color: $blue;
+	display: inline-block;
+	text-transform: uppercase;
+	margin-right: $small-gutter;
+	padding: 3px 8px;
+	@include font(12px, 19px, $font-sans-alt, $font-bold);
+	@include themes((background-color: normal), 'body');
+	@include mq(tablet-wide) {
+		padding: 5px 10px;
+		@include font(15px, 22px);
+	}
+}

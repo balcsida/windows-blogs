@@ -1,0 +1,157 @@
+.post {
+	/* Slideshow noscript message */
+	.jetpack-slideshow-noscript {
+		@extend %icon;
+		padding: 10px;
+		background-color: $blue;
+		color: $white;
+		font-size: 14px;
+		&:before {
+			content: "\e116";
+			display: inline-block;
+			margin-right: 10px;
+		}
+	}
+
+	/* Slideshow */
+	.slideshow-window {
+		position: relative;
+		z-index: 1;
+		height: 0 !important;
+		margin: 1em 0;
+		padding-top: 30px !important;
+    	padding-bottom: 56.25% !important;
+    	overflow: hidden;
+		background-color: $white;
+		border: 0;
+		border-radius: 0;
+		.slideshow-controls a {
+			opacity: 0;
+		}
+		.slideshow-controls a:nth-child(odd) {
+			opacity: 1;
+		}
+		&:hover,
+		&:focus {
+			.slideshow-controls a {
+				opacity: 1;
+			}
+		}
+	}
+	.slideshow-slide {
+		width: 100% !important;
+		height: 100% !important;
+		img {
+			position: relative;
+			top: 50%;
+			transform: translateY(-50%);
+			display: block;
+    		height: auto;
+    		max-width: 100% !important;
+    		max-height: 100% !important;
+    		margin: 0 auto;
+		}
+	}
+	.slideshow-slide-caption {
+		bottom: 0;
+		height: auto;
+		padding: 10px;
+		box-sizing: border-box;
+		line-height: 1.5;
+		background-color: $black;
+    	background-color: rgba($black, 0.6);
+    	text-shadow: none;
+    	&:empty {
+    		display: none;
+    	}
+	}
+
+	.slideshow-slide-link {
+		top: 0;
+		left: 0;
+		width: 100%;
+		z-index: 1000;
+		height: auto;
+		padding: 10px;
+		box-sizing: border-box;
+		line-height: 1.5;
+		background-color: $black;
+		background-color: rgba($black, 0.6);
+		text-shadow: none;
+		position: absolute;
+		text-align: center;
+
+		a.download-link {
+			color: #f7f7f7;
+			font-family: "Helvetica Neue",sans-serif;
+			font-size: 13px;
+
+			&:hover {
+				color: #f7f7f7;
+			}
+		}
+		&:empty {
+			display: none;
+		}
+	}
+
+	.slideshow-controls {
+		bottom: 50%;
+		margin-bottom: -16px;
+		a {
+			background-color: rgba($black, 0.6);
+			border-width: 1px !important;
+			border-radius: 0 !important;
+			opacity: 0;
+			transition: opacity 0.3s ease-in-out;
+			&:first-child {
+				position: absolute;
+				left: 0;
+			}
+			&:last-child {
+				position: absolute;
+				right: 0;
+			}
+			&:hover,
+			&:focus {
+				border-width: 1px !important;
+				border-radius: 0 !important;
+			}
+		}
+	}
+	.slideshow-slide-thumb-container {
+
+		text-align: center;
+		background-color: $white;
+		position: relative;
+		overflow-x: hidden;
+		font-size: 0;
+
+		.slideshow-slide-thumb {
+			display: inline-block;
+			overflow: hidden;
+			height: 180px;
+			width: 180px;
+			margin: 0 0.6rem;
+			background-position: center;
+			/* Make the background image cover the area of the <div>, and clip the excess */
+			background-size: cover;
+			cursor: pointer;
+
+		}
+
+		.slideshow-controls {
+			pointer-events: none;
+
+			a:nth-child( odd ) {
+				opacity: 1;
+				pointer-events: all;
+			}
+
+			a.paused {
+				visibility: hidden;
+			}
+		}
+
+	}
+}

@@ -1,0 +1,65 @@
+.post-vertical,
+.post-horizontal {
+	clear: both;
+	background-color: $post-bg;
+	margin-bottom: $gutter;
+	@include font(12px, 18px);
+	@include mq(tablet) {
+		@include font(16px, 24px);
+	}
+	@include mq(tablet-wide) {
+		margin-bottom: $wide-gutter;
+	}
+	&:last-child {
+		@include mq(tablet-wide) {
+			margin-bottom: 0;
+		}
+	}
+	.post-title {
+		margin-top: 0;
+	}
+}
+
+.post-horizontal {
+	.post-title {
+		@include font(18px, 22px);
+		@include mq(tablet) {
+			@include font(24px, 28px);
+		}
+	}
+}
+
+.post-wrapper {
+	padding: $small-gutter;
+	@include mq(tablet) {
+		padding: $large-gutter;
+	}
+	@include mq(tablet-wide) {
+		padding: $gutter $large-gutter;
+	}
+}
+
+.post-vertical {
+	overflow: hidden;
+	@include mq(phone-wide) {
+		display: flex;
+	}
+	.fixed-ratio {
+		@include mq(phone-wide) {
+			order: 2;
+			width: 47%;
+		}
+		& + .post-wrapper {
+			@include mq(phone-wide) {
+				order: 1;
+				width: 53%;
+			}
+		}
+	}
+	.post-title {
+		@include font(16px, 20px);
+		@include mq(tablet) {
+			@include font(22px, 26px);
+		}
+	}
+}

@@ -1,0 +1,306 @@
+.superfeature {
+	@extend .fixed-ratio;
+	@extend .ratio--superfeature;
+ 	margin-top: $reverse-gutter;
+	margin-bottom: $gutter;
+	margin-left: -10px;
+	margin-right: -10px;
+	overflow: hidden;
+	@include mq(tablet) {
+		margin-bottom: $wide-gutter;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: auto;
+		&:before {
+			content: "";
+			display: block;
+			width: 54%;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: 1;
+			transform: skewX(4deg);
+			margin-left: -50px;
+			pointer-events: none;
+			background-color: $white;
+			@include themes((background-color: normal), 'body');
+		}
+	}
+	@include mq(tablet-wide) {
+		&:before {
+			transform: skewX(10deg);
+		}
+	}
+	@include mq(desk) {
+		&:before {
+			transform: skewX(15deg);
+		}
+	}
+	&.white {
+		@include mq(tablet) {
+			&:before {
+				background-color: $white !important;
+			}
+		}
+	}
+	> a {
+		display: block;
+		@include mq(tablet) {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+		}
+	}
+	.post-header .author a {
+		color: $white !important;
+		&:hover {
+			color: $gray-light !important;
+		}
+	}
+}
+.superfeature-image {
+	width: 100%;
+	max-width: none;
+	height: auto;
+	display: block;
+	z-index: 1;
+	@include mq(tablet) {
+		position: absolute;
+		height: 100%;
+		top: 0;
+		width: 55%;
+		max-width: 55%;
+		left: auto;
+		right: 0;
+		transform: none;
+		z-index: inherit;
+	}
+	&.missing {
+		@include themes((background-color: normal), 'body');
+	}
+}
+
+.type-post.white .superfeature-content {
+	color: $gray-dark;
+	&:after,
+	&:before {
+		background-color: $white !important;
+	}
+	.post-title a {
+		color: $gray-dark !important;
+	}
+	.date,
+	.category {
+		color: $gray;
+		a {
+			color: $gray;
+			&:hover {
+				color: $gray-dark;
+			}
+		}
+	}
+	.read-more {
+		color: $white !important;
+		@include themes((background-color: normal), 'body');
+		&:hover {
+			@include themes((background-color: dark), 'body');
+		}
+	}
+}
+
+.base-superfeature-content {
+	width: 100%;
+	padding: 0 $gutter $gutter $gutter;
+	color: $white;
+	position: relative;
+	z-index: 2;
+	@include mq(tablet) {
+		padding: $gutter;
+		pointer-events: none;
+		position: absolute;
+		z-index: 2;
+		left: 0;
+		top: 50%;
+		transform: translateY(-50%);
+		left: 0;
+		width: 50%;
+	}
+	&:before,
+	&:after {
+		content: "";
+		display: block;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: -1;
+		background-color: $white;
+		@include themes((background-color: normal), 'body');
+		@include mq(tablet) {
+			display: none;
+		}
+	}
+	&:after {
+		transform: skewY(3deg);
+		bottom: auto;
+		top: -20%;
+	}
+	.read-more {
+		display: inline-block;
+		text-transform: uppercase;
+		padding: 5px 10px;
+		font-weight: $font-bold;
+		background-color: $white;
+		@include themes((color: normal), 'body');
+		&:hover {
+			@include themes((color: dark), 'body');
+		}
+	}
+	.addthis_toolbox {
+		vertical-align: bottom !important;
+		background-color: $white;
+		padding: 3px 10px !important;
+		max-height: 31px;
+		display: none;
+		// @include mq($until: 375px) {
+		// 	margin-top: 10px;
+		// 	display: inline-block;
+		// }
+		@include mq(tablet) {
+			padding: 5px 10px !important;
+		}
+		@include mq(tablet-wide) {
+			display: inline-block;
+		}
+		&:hover {
+			@include mq(tablet) {
+				background-color: $blue;
+				@include themes((background-color: normal), 'body');
+			}
+		}
+		&:hover .hidden-share {
+			@include mq(tablet) {
+				background-color: $white;
+				margin: -5px 7px -5px -10px;
+				padding: 5px 10px;
+				max-height: 32px;
+				width: 92px;
+			}
+		}
+	}
+	.post-footer {
+		pointer-events: all;
+	}
+	.date,
+	.category {
+		color: $white;
+		a {
+			color: $white;
+			&:hover {
+				color: $gray-light;
+			}
+		}
+	}
+	.post-title {
+		margin-top: 0;
+		margin-bottom: 10px;
+		@include font(22px, 22px, $weight: $font-light);
+		@include mq(tablet-wide) {
+			@include font(45px, 45px);
+		}
+		a {
+			color: $white !important;
+		}
+	}
+}
+
+.type-post .superfeature-content {
+	@extend .base-superfeature-content;
+}
+
+.superfeature-right {
+	@extend .superfeature;
+	@include mq(tablet) {
+		margin-bottom: $wide-gutter;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: auto;
+		&:before {
+			content: "";
+			display: block;
+			width: 54%;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			left: auto;
+			right: 0;
+			z-index: 1;
+			transform: skewX(-4deg);
+			margin-right: -50px;
+			pointer-events: none;
+			background-color: $white;
+			@include themes((background-color: normal), 'body');
+		}
+	}
+	@include mq(tablet-wide) {
+		&:before {
+			transform: skewX(-10deg);
+		}
+	}
+	@include mq(desk) {
+		&:before {
+			transform: skewX(-15deg);
+		}
+	}
+}
+.superfeature-image-right {
+	@extend .superfeature-image;
+	@include mq(tablet) {
+		position: absolute;
+		height: 100%;
+		top: 0;
+		width: 55%;
+		max-width: 55%;
+		left: 0;
+		right: auto;
+		transform: none;
+		z-index: inherit;
+	}
+}
+.type-post .superfeature-content-right {
+	@extend .base-superfeature-content;
+	@include mq(tablet) {
+		padding: $gutter;
+		pointer-events: none;
+		position: absolute;
+		z-index: 2;
+		left: auto;
+		right: 0;
+		top: 50%;
+		transform: translateY(-50%);
+		width: 50%;
+	}
+	&:before,
+	&:after {
+		content: "";
+		display: block;
+		position: absolute;
+		bottom: 0;
+		left: auto;
+		right: 0;
+		width: 100%;
+		height: 100%;
+		z-index: -1;
+		background-color: $white;
+		@include themes((background-color: normal), 'body');
+		@include mq(tablet) {
+			display: none;
+		}
+	}
+	text-align: right;
+	h1, h2 {
+		padding-right: 0px;
+	}
+}

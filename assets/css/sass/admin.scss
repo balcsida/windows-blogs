@@ -1,0 +1,185 @@
+/**
+ * Windows Blogs
+ * http://10up.com
+ *
+ * Copyright (c) 2015 10up
+ * Licensed under the GPLv2+ license.
+ */
+@import "utils/variables";
+@import "utils/mq-variables";
+@import "utils/mq";
+@import "utils/mixins";
+@import "utils/placeholders";
+@import "utils/ratios";
+@import "base/colors";
+
+@import "components/superfeature";
+@import "components/curated-posts";
+@import "components/post-elements";
+
+.superfeature *,
+.post-horizontal *,
+.post-vertical * {
+	box-sizing: border-box;
+	text-decoration: none;
+}
+
+.superfeature {
+	max-width: $grid-width;
+	margin-top: 40px;
+	margin-left: 0;
+}
+.post-horizontal,
+.post-vertical {
+	width: 50%;
+	max-width: 560px;
+}
+.postbox {
+	.hide {
+		display: none;
+	}
+	.form-control {
+		padding: 0.5rem;
+	}
+	.form-inline {
+		display: inline;
+		padding: 0.5rem 0.5rem 0.5rem 0;
+		label {
+			vertical-align: bottom;
+		}
+	}
+	.reset-card {
+		margin-left: 0.2rem;
+	}
+	.clearfix{
+		clear: both;
+	}
+	.card-header img, .preview-images figure, .preview-images img {
+		height: 8rem;
+		width: 8rem;
+		margin: 0;
+		display: inline-block;
+	}
+	.card-header {
+		img {
+			float: left;
+			margin-right:0.4rem;
+		}
+		.header-preview {
+			padding: 0.3rem;
+		}
+	}
+	.preview-images figcaption {
+		padding: 0.2rem;
+		text-align: center;
+	}
+	.preview-images figcaption:empty {
+		padding: 0;
+		line-height: 0;
+	}
+	.preview-images {
+		min-height: 8rem;
+		box-shadow: 0 2px 1px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+		margin: 0.5em 0;
+		width: 8rem;
+		display: inline-block;
+	}
+	.gallery_images-preview-images {
+		width: 100%;
+	}
+	.admin-card {
+		width:97%;
+		box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+		margin: 0.5rem 0 0.5rem 0;
+		background-color: #fff;
+		transition: box-shadow .25s;
+		border-radius: 2px;
+		padding:0.5rem;
+		display: inline-block;
+		margin-right: 1.2em;
+		vertical-align: top;
+
+		@include mq(tablet-wide) {
+			width: 48%;
+		}
+		&.showing-header {
+			width: 23%;
+		}
+	}
+	.admin-card-fields {
+	}
+	.card-reset-btn {
+		display: inline;
+	}
+	.admin-card-action {
+		border-top: 1px solid rgba(160, 160, 160, 0.2);
+		padding: 1rem;
+		margin-top: 1rem;
+		.add-another {
+			margin-left: 0.2rem;
+		}
+	}
+	.radio-header {
+		padding: 0.5rem 0.5rem 0.5rem 0;
+	}
+	.save, .remove {
+		margin-left: 0.2rem;
+	}
+	.overlay {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		background: rgba( 0,0,35,0.5 );
+		z-index: 10;
+	}
+	.ajax-message {
+		margin: 1rem;
+		padding: 1rem;
+	}
+}
+
+// Context taxonomy terms.
+.form-field {
+	.has-counter {
+		width: 95%;
+	}
+}
+
+.ms-counter {
+	float: right;
+
+	&.over-limit {
+		color: #dc3232;
+	}
+}
+
+.wp-list-table {
+	.img.wp-term-images-media, .column-image img {
+		max-width: 100%;
+		max-height: none;
+	}
+
+	.column-image {
+		width: 90px;
+	}
+}
+
+.tagsdiv#ms-context {
+	.select2-container--default {
+		&, .select2-selection--multiple {
+			border-color: #ddd;
+			border-radius: 0;
+
+			.select2-selection__choice {
+				background-color: #f1f1f1;
+				border-color: #ddd;
+			}
+		}
+	}
+}
+
+#new-tag-ms-context {
+	width: 100%;
+}

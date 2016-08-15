@@ -1,0 +1,286 @@
+//Styles specific to sites that have site level navigation.
+//Broken out here to reduce confusion below.
+.has-site-navigation {
+	.main-nav .container > ul > li {
+		> a,
+		> span {
+			padding-right: 15px;
+			padding-left: 15px;
+			&:focus,
+			&:hover {
+				background: $gray-darkest;
+				color: #fff;
+			}
+		}
+		&.ms-current-blog {
+			> a {
+				@include mq($menu-breakpoint) {
+					background: $gray-darkest;
+					color: #fff;
+				}
+			}
+		}
+	}
+}
+
+.main-nav {
+	background-color: $blue;
+	position: relative;
+	z-index: 10;
+	@include font(14px, $weight: bold);
+	.container {
+		padding-left: 0;
+		padding-right: 0;
+		@include mq($from: $menu-breakpoint) {
+			position: relative;
+			padding-left: 20px;
+			padding-right: 20px;
+		}
+		> ul {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+			margin-top: 10px;
+			@include mq($until: $menu-breakpoint) {
+				border-top: 1px solid #3393df;
+			}
+			@include mq($menu-breakpoint) {
+				display: inline-block;
+				vertical-align: middle;
+				margin: 0;
+				margin-left: -4px;
+			}
+		}
+		> ul > li {
+			display: block;
+			@include mq($until: $menu-breakpoint) {
+				border-bottom: 1px solid #3393df;
+			}
+			@include mq($menu-breakpoint) {
+				display: inline-block;
+				float: left;
+				position: relative;
+				&:hover > a {
+					color: #fff;
+					body.blog-id-43 & {
+						color: #e4f8ff;
+					}
+				}
+			}
+			&.focused,
+			&:hover {
+				.sub-menu {
+					@include mq($menu-breakpoint) {
+						display: block;
+					}
+				}
+			}
+			> a,
+			> span {
+				display: block;
+				padding-top: $small-gutter;
+				padding-right: $large-gutter;
+				padding-bottom: $small-gutter;
+				text-transform: uppercase;
+				@include mq($menu-breakpoint) {
+					padding-top: $gutter;
+					padding-bottom: $gutter;
+					transition: color 0.1s;
+				}
+				&:focus,
+				&:hover {
+					color: $blue-dark;
+					body.blog-id-43 & {
+						color: #e4f8ff;
+					}
+				}
+			}
+		}
+	}
+	.menu-item-has-children {
+		&.active > a:after {
+			@include mq($until: $menu-breakpoint) {
+				content: "\f078";
+			}
+		}
+		> a:after {
+			@extend %icon;
+			content: "\f054";
+			font-size: 12px;
+			margin-left: 10px;
+			margin-top: -3px;
+			display: inline-block;
+			vertical-align: middle;
+			@include mq($menu-breakpoint) {
+				content: "\f078";
+			}
+		}
+	}
+
+	// The cloned version that's only visible on smaller screens.
+	.site-menu-clone {
+		@include mq($menu-breakpoint) {
+			display: none;
+		}
+	}
+}
+
+.sub-menu {
+	list-style: none;
+	margin: 0;
+	padding-left: 10px;
+	display: none;
+	@include mq($menu-breakpoint) {
+		background-color: $header-bg;
+		position: absolute;
+		width: 235px;
+		padding: $gutter;
+		top: 59px;
+		left: $reverse-gutter;
+		z-index: 11;
+	}
+	a {
+		display: block;
+		padding: $small-gutter $gutter;
+		margin-left: $reverse-gutter;
+		margin-right: $reverse-gutter;
+		&:focus,
+		&:hover {
+			color: $white;
+			background-color: $blue;
+			white-space: nowrap;
+			@include themes((background-color: normal), false);
+		}
+	}
+}
+
+.sub-nav {
+	display: inline-block;
+}
+
+//Site level navigation styling
+.site-menu-wrap {
+	background-color: #1070b8;
+	@include mq( $until: $menu-breakpoint ) {
+		display: none;
+		.home.ms-network-home & {
+			display: block;
+		}
+	}
+	@include mq( $from: $menu-breakpoint ) {
+		background-color: $gray-darkest;
+	}
+}
+
+.site-menu-container {
+	position: relative;
+	@include font(14px, $weight: bold);
+	@include mq( $from: $menu-breakpoint ) {
+		display: block;
+	}
+	> ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		width: 100%;
+		@include mq($menu-breakpoint) {
+			display: inline-block;
+			vertical-align: middle;
+			margin: 0;
+			margin-left: -4px;
+		}
+	}
+	> ul > li {
+		display: block;
+		padding-left: 20px;
+		width: 100%;
+		&:not(:last-child) {
+			border-bottom: 1px solid #1480d4;
+		}
+		@include font(12px);
+		@include mq($menu-breakpoint) {
+			border: 0;
+			display: inline-block;
+			padding-left: 0;
+			position: relative;
+			width: auto;
+			&:hover > a {
+				@include themes((color: light), 'body');
+			}
+			&:not(:last-child) {
+				border-bottom: 0;
+			}
+		}
+		> a,
+		> span {
+			display: block;
+			padding-top: $small-gutter;
+			padding-right: 15px;
+			padding-bottom: $small-gutter;
+			padding-left: 15px;
+			text-transform: uppercase;
+			@include mq($menu-breakpoint) {
+				padding-top: $gutter;
+				padding-bottom: $gutter;
+				transition: color 0.1s;
+			}
+			&:focus,
+			&:hover {
+				@include themes((color: light), 'body');
+			}
+		}
+	}
+	.is-external-link {
+		margin-right: 5px;
+		&:after {
+			background-image: url("data:image/svg+xml;charset=utf8,%3Csvg width='13' height='11' viewBox='0 0 13 11' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10.2143 6.6458v2.2917c0 .568-.2043 1.054-.613 1.4574-.4087.4033-.9008.605-1.4763.605H2.0893c-.5755 0-1.0676-.2017-1.4763-.605C.2043 9.9913 0 9.5055 0 8.9374V2.9792c0-.5682.2043-1.054.613-1.4574.4087-.4034.9008-.605 1.4763-.605h5.107c.0678 0 .1235.0214.167.0643.0435.043.0653.098.0653.1648v.4584c0 .0668-.0218.1217-.0653.1647-.0435.0428-.0992.0643-.167.0643h-5.107c-.3192 0-.5925.1122-.8198.3366-.2273.2243-.341.494-.341.8092v5.9583c0 .315.1137.585.341.8092.2273.2244.5006.3366.8198.3366H8.125c.3192 0 .5924-.1122.8198-.3366.2273-.2243.341-.494.341-.8092V6.6458c0-.0668.0217-.1217.0652-.1647.0435-.0428.099-.0643.167-.0643h.464c.068 0 .1235.0215.167.0644.0435.043.0653.098.0653.1648zM13 .4583V4.125c0 .124-.046.2316-.1378.3223-.092.0907-.2007.136-.3265.136-.1257 0-.2345-.0453-.3264-.136l-1.2768-1.2605-4.73 4.6693c-.0483.048-.104.0717-.1668.0717-.063 0-.1185-.0238-.1668-.0716l-.827-.8163c-.0485-.0477-.0727-.1026-.0727-.1647 0-.062.0242-.117.0726-.1647L9.7717 2.041 8.495.7806C8.403.69 8.357.5826 8.357.4583c0-.124.046-.2315.138-.3222C8.587.0455 8.6957 0 8.8214 0h3.7143c.1258 0 .2346.0454.3265.136.092.0908.1378.1982.1378.3223z' fill='%23ffffff' fill-rule='evenodd'/%3E%3C/svg%3E");
+			background-repeat: no-repeat;
+			content: "";
+			height: 11px;
+			opacity: .47;
+			position: absolute;
+			right: 15px;
+			top: calc(50% - 5.5px);
+			width: 13px;
+		}
+		@include mq($menu-breakpoint) {
+			&:after {
+				right: -5px;
+			}
+		}
+	}
+}
+
+.site-menu {
+	display: inline-block;
+	list-style: none;
+	vertical-align: middle;
+	margin: 0;
+	margin-left: -4px;
+	padding: 0;
+	li {
+		display: inline-block;
+		position: relative;
+	}
+}
+
+//Styles for when the site-menu is cloned into the network-menu on mobile.
+.network-menu .site-menu-container {
+	&.site-menu-clone {
+		background: #1070b8;
+		> ul {
+			border: 0;
+			margin-top: 0;
+			> li {
+				padding-left: 0;
+				a:hover {
+					background: none;
+					color: lighten($blue, 20%);
+				}
+			}
+			> li:last-child {
+				border: 0;
+			}
+		}
+	}
+}

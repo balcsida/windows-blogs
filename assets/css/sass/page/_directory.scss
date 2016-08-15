@@ -1,0 +1,35 @@
+.directory {
+	h3,
+	p {
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+}
+
+.directory-content {
+	-moz-column-count: 2;
+	-moz-column-gap: 20px;
+	-webkit-column-count: 2;
+	-webkit-column-gap: 20px;
+	column-count: 2;
+	column-gap: 20px;
+}
+
+.directory-item {
+	-webkit-column-break-inside: avoid;
+	page-break-inside: avoid;
+	break-inside: avoid;
+}
+.rss-list {
+	list-style: none;
+	margin: 0 0 30px 0;
+	padding: 0;
+	li {
+		display: inline-block;
+		margin-right: 20px;
+		@include font(14px);
+		a .icon {
+			color: $rss-orange;
+		}
+	}
+}

@@ -1,0 +1,77 @@
+.age-gate {
+	background: #000;
+	color: #fff;
+	position: relative;
+	text-align: center;
+
+	h2 {
+		margin: 0;
+	}
+
+	p {
+		margin-top: 0;
+		margin-bottom: 30px;
+	}
+
+	.play-button {
+		width: 100%;
+		background: transparent;
+		border: none;
+	}
+
+	&.show-form {
+		.age-gate-wrap {
+			display: flex;
+		}
+	}
+
+	&.age-verified {
+		.age-gate-wrap, .play-button {
+			display: none;
+		}
+	}
+}
+
+.age-gate-wrap, .age-gate .play-button {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	z-index: 5;
+}
+
+.age-gate-wrap {
+	background: #000;
+	display: none;
+	flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: center;
+	z-index: 5;
+}
+
+.age-gate-form {
+	input[type="submit"] {
+		background: $blue;
+		border: none;
+		color: #fff;
+		font-weight: 100;
+		padding: 7px 30px;
+	}
+
+	br {
+		display: none;
+	}
+
+	select {
+		color: #000;
+		&:not(:last-of-type) {
+			margin-right: 10px;
+		}
+	}
+
+	.form-submit {
+		margin-top: 15px;
+		width: 100%;
+	}
+}

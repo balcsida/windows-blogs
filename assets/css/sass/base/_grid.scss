@@ -1,0 +1,106 @@
+// General container
+.container {
+	@extend %clearfix;
+	max-width: $grid-width + $gutter;
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: $small-gutter;
+	padding-right: $small-gutter;
+	@include mq(tablet) {
+		max-width: $grid-width + $wide-gutter;
+		padding-left: $gutter;
+		padding-right: $gutter;
+	}
+}
+
+// Archive and Index container
+.archive-container,
+.posts-container {
+	overflow: hidden;
+	@include mq(tablet-wide) {
+		margin-left: $reverse-gutter;
+		margin-right: $reverse-gutter;
+	}
+}
+
+// Index left and right columns
+.featured-posts,
+.posts {
+	@include mq(tablet-wide) {
+		width: 50%;
+		float: left;
+		padding-left: $gutter;
+		padding-right: $gutter;
+	}
+}
+
+// Index regular posts
+.posts {
+	@include mq(tablet-wide) {
+		position: relative;
+		&:after {
+			content: "";
+			background-color: $post-bg;
+			width: calc(100% - #{$wide-gutter});
+			height: 30%;
+			position: absolute;
+			bottom: 0;
+			left: $gutter;
+			z-index: -1;
+		}
+	}
+}
+
+// Archive posts list
+.posts-list {
+	@include mq(tablet-wide) {
+		float: left;
+		width: 65.5%;
+		padding-left: $gutter;
+		padding-right: $gutter;
+	}
+}
+
+// Single post
+.post-content,
+.sidebar {
+	background-color: $post-bg;
+	padding-top: $gutter;
+	padding-bottom: $gutter;
+	@include mq(tablet-wide) {
+		padding-top: $wide-gutter;
+		padding-bottom: $wide-gutter;
+	}
+}
+.post-content {
+	padding-left: $gutter;
+	padding-right: $gutter;
+	margin-bottom: 20px;
+	@include mq(tablet-wide) {
+		float: left;
+		width: 65.5%;
+		padding-left: $wide-gutter;
+		padding-right: $wide-gutter;
+		margin-bottom: 70px;
+		&.post-content--full-width {
+			width: 100%;
+			float: none;
+		}
+	}
+}
+// Sidebar on single posts and archives
+.sidebar {
+	padding-left: $gutter;
+	padding-right: $gutter;
+	width: 100%;
+	margin-bottom: 20px;
+	@include mq(tablet-wide) {
+		float: right;
+		width: 31%;
+		padding-left: $large-gutter;
+		padding-right: $large-gutter;
+	}
+	.archive-container & {
+		margin-right: $gutter;
+	}
+}

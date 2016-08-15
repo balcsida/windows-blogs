@@ -1,0 +1,118 @@
+// Grid
+$gutter: 20px;
+$small-gutter: $gutter / 2;
+$large-gutter: $gutter * 1.5;
+$wide-gutter: $gutter * 2;
+
+$reverse-gutter: $gutter * -1;
+$reverse-large-gutter: $gutter * -1.5;
+$reverse-wide-gutter: $gutter * -2;
+
+$grid-width: 1160px;
+
+// Neutral colors
+$white: #fff;
+$light: #f2f4f5;
+$black: #000;
+$gray-lightest: #f0f0f0;
+$gray-light: #e2e2e2;
+$gray: #767676;
+$gray-medium-light: #5f5e5e;
+$gray-medium: #444444;
+$gray-dark: #333333;
+$gray-darkest: #1a1a1a;
+
+// Brand colors
+$blue: #0078d7;
+$blue-dark: #002050;
+$yellow: #ffb900;
+$orange: #d83b01;
+$red: #eb1123;
+$magenta: #b4009e;
+$purple: #5c2d91;
+$teal: #008272;
+$green: #107c10;
+
+$twitter-blue: #55acee;
+$facebook-blue: #3b5999;
+$rss-orange: #fe9900;
+$linkedin-blue: #00a0dc;
+$reddit-orangered: #ff4500;
+$skype-blue: #009ee5;
+
+// Color assignments
+$body-bg: $gray-lightest;
+
+$post-bg: $white;
+
+$header-bg: $gray-darkest;
+$header-contrast: $gray-dark;
+$header-text: $white;
+$header-link: $white;
+$header-link-hover: $gray-lightest;
+$header-bottom-default: $blue;
+
+$footer-bg: $gray-darkest;
+$footer-link: $white;
+$footer-link-hover: $gray-lightest;
+
+$notice-bg: $gray-light;
+$notice-text: $gray-dark;
+
+/// Brand color list
+///
+/// Brand colors based on style guide
+///
+/// @type map
+///
+/// @author Karine Do
+///
+/// @example
+/// 	(
+/// 		theme-name:  (shade: color, shade2: color2),
+/// 		theme-name2: (shade: color3, shade2: color4)
+/// 	)
+///
+///	@see theme
+///	@see themes
+///
+/// @group windows
+$themes-palettes: (
+	blog-id-1: (light: lighten($blue, 20%), normal: $blue, dark: $blue-dark),
+	blog-id-2: (light: lighten($blue, 20%), normal: $blue, dark: $blue-dark),
+	blog-id-3: (light: lighten($blue, 20%), normal: $blue, dark: $blue-dark),
+	blog-id-4: (light: lighten($blue, 20%), normal: $blue, dark: $blue-dark),
+	blog-id-5: (light: lighten($blue, 20%), normal: $blue, dark: $blue-dark),
+	blog-id-6: (light: lighten($blue, 20%), normal: $blue, dark: $blue-dark),
+	blog-id-7: (light: lighten($blue, 20%), normal: $blue, dark: $blue-dark),
+	blog-id-8: (light: lighten($blue, 20%), normal: $blue, dark: $blue-dark),
+	blog-id-9: (light: lighten($blue, 20%), normal: $blue, dark: $blue-dark),
+	blog-id-10: (light: lighten($blue, 20%), normal: $blue, dark: $blue-dark),
+	blog-id-11: (light: lighten($blue, 20%), normal: $blue, dark: $blue-dark),
+	blog-id-21: (light: lighten($blue, 20%), normal: $blue, dark: $blue-dark),
+	blog-id-31: (light: lighten($blue, 20%), normal: $blue, dark: $blue-dark),
+	blog-id-33: (light: lighten($blue, 20%), normal: $blue, dark: $blue-dark),
+	blog-id-43: (light: lighten($blue, 20%), normal: $blue, dark: $blue-dark),
+	wp-admin: (light: lighten($blue, 20%), normal: $blue, dark: $blue-dark),
+	) !default;
+
+/// Brand sans-serif font
+/// @type string
+/// @group windows
+$font-sans:     "Segoe UI", Helvetica, Arial, sans-serif !default;
+$font-sans-alt: "SegoeProCond-Bold", Helvetica, Arial, sans-serif !default;
+
+/// Brand serif font
+/// @type string
+/// @group windows
+$font-serif: "Segoe UI", Helvetica, Arial, sans-serif !default;
+
+$font-light:        300 !default;
+$font-normal:       400 !default;
+$font-medium:       500 !default;
+$font-semibold:     600 !default;
+$font-bold:         700 !default;
+
+$font-italic:       italic !default;
+
+$menu-breakpoint: tablet-wide;

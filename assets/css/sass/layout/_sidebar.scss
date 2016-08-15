@@ -1,0 +1,35 @@
+.sidebar {
+	h3 {
+		text-transform: uppercase;
+		margin-top: 0;
+		font-weight: 600;
+	}
+	.post-title {
+		color: $gray-dark;
+		font-weight: $font-normal;
+		margin: 0;
+	}
+}
+.related-article {
+	clear: both;
+	display: block;
+	margin-bottom: 50px;
+	overflow: hidden;
+	.read-more {
+		display: block;
+		font-weight: $font-bold;
+	}
+}
+.related-thumbnail {
+	float: left;
+	margin-right: $gutter;
+	margin-top: 6px;
+	width: 70px;
+	height: 70px;
+	& + .post-title {
+		padding-left: 90px;
+		& + .read-more {
+			padding-left: 90px;
+		}
+	}
+}

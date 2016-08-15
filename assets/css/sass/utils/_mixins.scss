@@ -1,0 +1,399 @@
+/// Use rem values with fallback
+///
+/// @param {string} $property - Property that needs a rem value
+/// @param {measure} $values - Values
+///
+/// @group helpers
+///
+/// @link https://gist.github.com/webgefrickel/4530526
+@mixin rem($property, $values) {
+ // Create a couple of empty lists as output buffers.
+ $font-size: 16px;
+ $px-values: ();
+ $rem-values: ();
+
+ // Loop through the $values list
+ @each $value in $values {
+   // For each property value, if it's in rem or px, derive both rem and
+   // px values for it and add those to the end of the appropriate buffer.
+   // Ensure all pixel values are rounded to the nearest pixel.
+   @if $value == 0 or $value == 0px {
+     // 0 -- use it without a unit
+     $px-values: join($px-values, 0);
+     $rem-values: join($rem-values, 0);
+   } @else if type-of($value) == number and not unitless($value) and (unit($value) == px) {
+     // px value given - calculate rem value from font-size
+     $new-rem-value: $value / $font-size;
+     $px-values: join($px-values, round($value));
+     $rem-values: join($rem-values, #{$new-rem-value}rem);
+   } @else if type-of($value) == number and not unitless($value) and (unit($value) == "%") {
+     // % value given - don't add px or rem
+     $px-values: join($px-values, #{$value});
+     $rem-values: join($rem-values, #{$value});
+   } @else if $value == auto {
+     // auto - don't add px or rem
+     $px-values: join($px-values, auto);
+     $rem-values: join($rem-values, auto);
+   } @else {
+     // unitless value - use those directly as rem and calculate the px-fallback
+     $px-values: join($px-values, round($value * $font-size));
+     $rem-values: join($rem-values, #{$value}rem);
+   }
+ }
+
+ // output the converted rules
+ #{$property}: $px-values;
+ #{$property}: $rem-values;
+}
+
+/// Generate font styles
+///
+/// @param {measure} $size - Font size
+/// @param {measure} $line - Line-height
+/// @param {string} $family - Font family
+/// @param {string} $weight - Font weight
+/// @param {string} $style - Font style
+///
+/// @author Karine Do
+///
+/// @group helpers
+@mixin font($size: false, $line: false, $family: false, $weight: false, $style: false ) {
+  @if $family != false {
+    font-family: $family;
+  }
+  @if $weight != false {
+    font-weight: $weight;
+  }
+  @if $style != false {
+    font-style: $style;
+  }
+  @if $size != false {
+    @include rem('font-size', $size);
+  }
+  @if $line != false {
+    @include rem('line-height', $line);
+  }
+}
+
+/// Support for retina images
+///
+/// @param {string} $image_name - Image name, without the extention, required
+/// @param {measure} $w [auto] - Image width, non-retina
+/// @param {measure} $h [auto] - Image height, non-retina
+/// @param {string} $extension [.png] - Image extension
+/// @param {boolean} $size [true] - True sets the background-size
+///
+/// @author Karine Do
+///
+/// @group helpers
+@mixin retina-image($image_name, $w: auto, $h: auto, $extension: '.png', $size: true) {
+  background-image: url('../../../images/' + $image_name + $extension);
+  background-repeat: no-repeat;
+  @if $size == true {
+    background-size: $w $h;
+    -webkit-background-size: $w $h;
+    -moz-background-size: $w $h;
+    -ms-background-size: $w $h;
+    -o-background-size: $w $h;
+  }
+  $x2img : $image_name + '@2x' + $extension;
+  @include retina {
+    background-image: url('../../../images/' + $x2img);
+    background-repeat: no-repeat;
+    @if $size == true {
+      background-size: $w $h;
+      -webkit-background-size: $w $h;
+      -moz-background-size: $w $h;
+      -ms-background-size: $w $h;
+      -o-background-size: $w $h;
+    }
+  }
+}
+
+/// Retina query
+///
+/// @author Karine Do
+///
+/// @group helpers
+@mixin retina {
+  @media
+  only screen and (-webkit-min-device-pixel-ratio: 2),
+  only screen and (   min--moz-device-pixel-ratio: 2),
+  only screen and (     -o-min-device-pixel-ratio: 2/1),
+  only screen and (        min-device-pixel-ratio: 2),
+  only screen and (                min-resolution: 192dpi),
+  only screen and (                min-resolution: 2dppx) {
+    @content;
+  }
+}
+
+/// Convert Photoshop tracking value to letter-spacing
+///
+/// @param {Integer} $psvalue - The value should be the same value as in Photoshop
+///
+/// @author Karine Do
+///
+/// @group helpers
+@mixin tracking($psvalue) {
+  letter-spacing: $psvalue / 1000 + em;
+}
+
+/// Cross-browser opacity
+///
+/// @param {Integer} $value - Opacity value
+///
+/// @author Karine Do
+///
+/// @group helpers
+@mixin ieopacity($value) {
+  $opacity: $value * 100;
+  opacity: $value;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=#{$opacity})";
+  filter: alpha(opacity=#{$opacity});
+}
+
+/// Generate brand colors for a single brand
+///
+/// @param {string} $theme - Brand name as listed in $themes
+/// @param {map} $properties - Properties to apply the brand colors to
+/// @param {string|bool} $parent - Selector to apply the brand styles to
+///
+/// @example scss
+///   // On buttons,
+///   // get the regular theme color for text,
+///   // darken the light theme color by 5% for background color
+///   button {
+///     @include theme(hellogrind, (color: normal, background-color: light darken 5%));
+///   }
+///
+/// @example css
+///   /* Above code outputs */
+///   .hellogrind button {
+///     color: #FFF256;
+///     background-color: #ffe38c;
+///   }
+///
+/// @example scss
+///   // Apply theme on the same element
+///   // Set last argument ($parent) to false
+///   button {
+///     @include theme(hellogrind, (color: normal), false);
+///   }
+///
+/// @example css
+///   /* Above code outputs */
+///   button.hellogrind {
+///     color: #FFF256;
+///   }
+///
+/// @example scss
+///   // Apply theme on a custom element
+///   // Set last argument ($parent) to selector
+///   button {
+///     @include theme(hellogrind, (color: normal), 'body');
+///   }
+///
+/// @example css
+///   /* Above code outputs */
+///   body.hellogrind button {
+///     color: #FFF256;
+///   }
+///
+/// @author Karine Do
+///
+/// @group windows
+@mixin theme($theme, $properties: (), $parent: true) {
+  $colors: map-safe-get($themes-palettes, $theme);
+  $selector: '';
+
+  @if type-of($parent) == string {
+    $selector: '#{$parent}.#{$theme} &';
+  }
+  @else {
+    @if $parent == true {
+      $selector: '.#{$theme} &';
+    }
+    @else {
+      $selector: '&.#{$theme}';
+    }
+  }
+
+  #{$selector} {
+    @each $property, $shade in $properties {
+      @if length($shade) > 1 {
+        #{$property}: get-color($colors, nth($shade, 1), nth($shade, 2), nth($shade, 3));
+      }
+      @else {
+        #{$property}: get-color($colors, $shade);
+      }
+    }
+  }
+}
+
+/// Generate brand colors for all brands
+///
+/// @param {map} $properties - Properties to apply the brand colors to
+/// @param {string|bool} $parent - Selector to apply the brand styles to
+///
+/// @example scss
+///   // On buttons,
+///   // get the regular theme color for text,
+///   // darken the light theme color by 5% for background color
+///   button {
+///     @include themes((color: normal, background-color: light darken 5%));
+///   }
+///
+/// @example css
+///   /* Above code outputs */
+///   .hellogrind button {
+///     color: #FFF256;
+///     background-color: #ffe38c;
+///   }
+///   .hellobuzz button {
+///     color: #ED519A;
+///     background-color: #ef93b9;
+///   }
+///   .thinkbeautiful button {
+///     color: #3398CC;
+///     background-color: #6ccbf2;
+///   }
+///   .sobeautiful button {
+///     color: #66339A;
+///     background-color: #a61477;
+///   }
+///
+/// @example scss
+///   // Apply theme on the same element
+///   // Set last argument ($parent) to false
+///   button {
+///     @include themes((color: normal), false);
+///   }
+///
+/// @example css
+///   /* Above code outputs */
+///   button.hellogrind {
+///     color: #FFF256;
+///   }
+///   button.hellobuzz {
+///     color: #ED519A;
+///   }
+///   button.thinkbeautiful {
+///     color: #3398CC;
+///   }
+///   button.sobeautiful {
+///     color: #66339A;
+///   }
+///
+/// @example scss
+///   // Apply theme on a custom element
+///   // Set last argument ($parent) to selector
+///   button {
+///     @include themes((color: normal), 'body');
+///   }
+///
+/// @example css
+///   /* Above code outputs */
+///   body.hellogrind button {
+///     color: #FFF256;
+///   }
+///   body.hellobuzz button {
+///     color: #ED519A;
+///   }
+///   body.thinkbeautiful button {
+///     color: #3398CC;
+///   }
+///   body.sobeautiful button {
+///     color: #66339A;
+///   }
+///
+/// @author Karine Do
+///
+/// @group windows
+@mixin themes($properties: (), $parent: true) {
+  @each $theme, $colors in $themes-palettes {
+    @include theme($theme, $properties, $parent);
+  }
+}
+
+/// Get key value from a map, making sure the key exists
+///
+/// @param {map} $map - Map to search
+/// @param {string} $key - Key
+///
+/// @author Karine Do
+///
+/// @group helpers
+@function map-safe-get($map, $key) {
+  @if map-has-key($map, $key) {
+    @return map-get($map, $key);
+  }
+  @else {
+    @warn "Woops, key not in map";
+  }
+}
+
+/// Get color for a theme
+///
+/// @param {map} $colors - Colors map to search
+/// @param {string} $shade - Shade to use
+/// @param {string} $modifyer [null] - Modifyer function to use
+/// @param {integer} $value [null] - Value
+///
+/// @author Karine Do
+///
+/// @group windows
+@function get-color($colors, $shade, $modifyer: null, $value: null) {
+  $basecolor: '';
+  // If the shade exists in the brand colors, use that shade
+  @if map-has-key($colors, $shade) {
+    $basecolor: map-get($colors, $shade);
+  }
+  // If the shade doesn't exist, use the color provided
+  @else {
+    $basecolor: $shade;
+  }
+  // If there's a color modifyer...
+  @if $modifyer {
+    // ...and the color modifyer function exists, modify the base color
+    @if function-exists($modifyer) {
+      $basecolor: call(#{$modifyer}, $basecolor, $value);
+    }
+  }
+  @return $basecolor;
+}
+
+/// Center horizontally and vertically using transform
+///
+/// @author Karine Do
+///
+/// @group helpers
+@mixin centerHV {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+/// Center vertically using transform
+///
+/// @author Karine Do
+///
+/// @group helpers
+@mixin centerV {
+  position: absolute;
+  top: 50%;
+  left: auto;
+  transform: translate(0, -50%);
+}
+
+/// Center horizontally using transform
+///
+/// @author Karine Do
+///
+/// @group helpers
+@mixin centerH {
+  position: absolute;
+  top: auto;
+  left: 50%;
+  transform: translate(-50%, 0);
+}

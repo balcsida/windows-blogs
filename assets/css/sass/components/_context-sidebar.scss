@@ -1,0 +1,56 @@
+.post-context {
+	overflow: hidden;
+	text-align: center;
+
+	@include mq($from: 620px, $until: tablet-wide) {
+		text-align: left;
+	}
+
+	h3 {
+		font-weight: 100;
+		margin-bottom: 30px;
+		margin-top: 0;
+		text-transform: none;
+	}
+}
+
+.context-wrap {
+	padding-bottom: 30px;
+	@include mq($from: 620px, $until: tablet-wide) {
+		float: left;
+		overflow: hidden;
+	}
+
+	h2 {
+		color: lighten($blue, 20%);
+		font-weight: 100;
+		margin: 10px 0;
+	}
+}
+
+@include mq($from: 620px, $until: tablet-wide) {
+	.context-image {
+		float: left;
+		padding-bottom: 30px;
+		padding-right: 30px;
+		width: 40%;
+		
+		~ .context-description {
+			width: 60%;
+		}
+	}
+}
+
+.context-description {
+	@include mq($from: 620px, $until: tablet-wide) {
+		float: left;
+		width: 100%;
+	}
+
+	p {
+		color: $gray-medium-light;
+		font-size: .9em;
+		line-height: 1.75;
+		margin-top: 0;
+	}
+}
